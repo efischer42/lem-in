@@ -1,0 +1,5 @@
+*.o
+lem-in
+test
+a.out
+objs

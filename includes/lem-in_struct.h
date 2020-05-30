@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lem-in_struct.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efischer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/30 13:36:24 by efischer          #+#    #+#             */
-/*   Updated: 2020/05/30 14:44:48 by efischer         ###   ########.fr       */
+/*   Created: 2020/05/30 14:21:02 by efischer          #+#    #+#             */
+/*   Updated: 2020/05/30 14:45:09 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#ifndef LEM_IN_STRUCT_H
+# define LEM_IN_STRUCT_H
 
-int		main(void)
+struct	s_room
 {
-	t_machine	machine;
-	char		*line;
-	int			ret;
-	static int	*(fct[NB_FCT](t_machine *machine)) = { get_ants_nb, get_rooms,
-							get_pipes };
+	t_list	*next_rooms;
+	char	*name;
+	size_t	x;
+	size_t	y;
+	int		ant;
+}		t_room;
 
-	line = NULL;
-	ft_bzero(&machine, sizeof(machine));
-	while ((ret = get_next_line(STDIN_FILENO, &line)) > 0)
-	{
-		machine.input = line;
-		fct[&machine];
-	}
-	return (ret);
-}
+struct 	s_machine
+{
+	enum e_state	state;
+	t_list			*rooms;
+	t_list			*paths;
+	t_room			*start;
+	t_room			*end;
+	size_t			ants;
+	char			*input;
+}		t_machine;
+
+#endif

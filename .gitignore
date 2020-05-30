@@ -1,4 +1,6 @@
 *.o
+*.swp
+*.swo
 lem-in
 test
 a.out

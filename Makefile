@@ -13,7 +13,7 @@ HEAD += lem-in.h
 PATHSRCS = srcs/
 SRCS += main.c
 
-PATHO = objs/
+PATHOBJS = objs/
 OBJS = $(patsubst %.c, $(PATHOBJS)%.o, $(SRCS))
 
 PATHLIB = libft/

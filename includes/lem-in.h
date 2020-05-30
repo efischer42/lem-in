@@ -6,8 +6,13 @@
 /*   By: efischer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 13:36:33 by efischer          #+#    #+#             */
-/*   Updated: 2020/05/30 13:36:34 by efischer         ###   ########.fr       */
+/*   Updated: 2020/05/30 13:41:34 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef LEM_IN_H
+# define LEM_IN_H
 
+# include "libft.h"
+
+#endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem-in_enum.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: efischer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/30 14:38:02 by efischer          #+#    #+#             */
-/*   Updated: 2020/05/30 14:39:16 by efischer         ###   ########.fr       */
+/*   Created: 2020/06/01 18:59:22 by efischer          #+#    #+#             */
+/*   Updated: 2020/06/01 19:46:48 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,21 @@ enum	e_state
 {
 	ST_GET_ANTS,
 	ST_GET_ROOMS,
-	ST_GET_PIPES;
+	ST_GET_PIPES
+};
+
+enum	e_token
+{
+	ROOM_START,
+	ROOM_END,
+	HYPHEN,
+	START,
+	END,
+	NB,
+	COORD_X,
+	COORD_Y,
+	ROOM_NAME,
+	COMMENT
 };
 
 #endif

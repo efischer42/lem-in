@@ -9,9 +9,23 @@ DFLAGS += -fsanitize=address,undefined -g3
 
 INCLUDES = includes/
 HEAD += lem-in.h
+HEAD += lem-in_enum.h
+HEAD += lem-in_struct.h
 
 PATHSRCS = srcs/
+SRCS += del.c
+SRCS += error.c
+SRCS += get_ants_nb.c
+SRCS += get_rooms.c
+SRCS += get_pipes.c
+SRCS += get_word.c
+SRCS += lexer.c
+SRCS += lexer_parser.c
 SRCS += main.c
+SRCS += parser.c
+
+PATHDEBUG = debug/
+SRCS += debug.c
 
 PATHOBJS = objs/
 OBJS = $(patsubst %.c, $(PATHOBJS)%.o, $(SRCS))
@@ -21,6 +35,7 @@ LIBINCLUDES = $(PATHLIB)includes
 LIBFT = $(PATHLIB)libft.a
 
 vpath %.c $(PATHSRCS)
+vpath %.c $(PATHDEBUG)
 vpath %.h $(INCLUDES)
 
 all: $(NAME)

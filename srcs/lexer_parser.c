@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   lexer_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/01 18:58:12 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/01 20:34:20 by efischer         ###   ########.fr       */
+/*   Created: 2020/06/01 18:58:49 by efischer          #+#    #+#             */
+/*   Updated: 2020/06/01 20:37:25 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-void	error(t_machine *machine, char *error_msg)
+void	lexer_parser(t_machine *machine)
 {
-	ft_putendl_fd(error_msg, 2);
+	lexer(machine);
+	debug(machine->token_lst);
+	parser(machine);
 	ft_strdel(&machine->input);
-	ft_lstdel(&machine->token_lst, del_token_lst);
-	exit(EXIT_FAILURE);
 }

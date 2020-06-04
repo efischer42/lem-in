@@ -23,6 +23,7 @@ SRCS += lexer.c
 SRCS += lexer_parser.c
 SRCS += main.c
 SRCS += parser.c
+SRCS += utils.c
 
 PATHDEBUG = debug/
 SRCS += debug.c

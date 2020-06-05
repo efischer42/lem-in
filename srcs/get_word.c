@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 18:58:30 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/01 20:47:54 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/05 15:04:08 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,11 @@ static void	get_nb(t_machine *machine, t_token *token, size_t *pos)
 
 static int	is_room_name(char c)
 {
-	if (c != '\0' && c != 'L' && c != '#' && ft_isblank(c) == FALSE)
+	if (c != '\0' && c != 'L' && c != '#' && c != '-'
+		&& ft_isblank(c) == FALSE)
+	{
 		return (TRUE);
+	}
 	return (FALSE);
 }
 

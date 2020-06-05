@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 18:57:48 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/01 20:36:48 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/05 14:55:57 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	init_enum_tab(enum e_token **enum_tab)
 	static enum e_token	token_command[] = {END, TAB_END};
 	static enum e_token	token_hyphen[] = {ROOM_NAME, TAB_END};
 	static enum e_token	token_start[] = {NB, ROOM_NAME, ROOM_START, ROOM_END,
-											TAB_END};
+											END, TAB_END};
 	static enum e_token	token_nb[] = {END, TAB_END};
 	static enum e_token	token_coord_x[] = {COORD_Y, TAB_END};
 	static enum e_token	token_coord_y[] = {END, TAB_END};

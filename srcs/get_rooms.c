@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:11:57 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/03 21:55:49 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/05 12:11:00 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	add_new_room(t_machine *machine, t_room *new_room, int *start, int *
 	lst_new = ft_lstnew(new_room, sizeof(*new_room));
 	if (lst_new == NULL)
 		error(machine, "Cannot allocate memory");
-	ft_lstadd(&machine->room_lst, lst_new);
+	ft_lstaddend(&machine->room_lst, lst_new);
 	if (*start == TRUE)
 		machine->start = new_room;
 	else if (*end == TRUE)
@@ -81,7 +81,6 @@ void		get_rooms(t_machine *machine)
 	t_list		*token_lst;
 	t_room		new_room;
 
-	ft_putendl_fd("Get rooms", 2);
 	ft_bzero(&new_room, sizeof(new_room));
 	lexer_parser(machine);
 	token_lst = machine->token_lst;

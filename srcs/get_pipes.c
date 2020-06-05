@@ -6,11 +6,24 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:13:09 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/03 21:01:52 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/05 12:27:58 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
+
+static void	reverse_link(t_machine *machine, t_room *first_room,
+				t_room *last_room)
+{
+	t_room	*tmp;
+	t_list	*new_lst;
+
+	tmp = first_room;
+	first_room = find_room(machine, last_room->name);
+	last_room = tmp;
+	new_lst = ft_lstnewnomalloc(last_room, sizeof(*last_room));
+	ft_lstadd(&first_room->next_rooms, new_lst);
+}
 
 static void	link_rooms(t_machine *machine, t_token *token)
 {
@@ -33,6 +46,7 @@ static void	link_rooms(t_machine *machine, t_token *token)
 			error(machine, "Cannot link a room with itself");
 		new_lst = ft_lstnewnomalloc(last_room, sizeof(*last_room));
 		ft_lstadd(&first_room->next_rooms, new_lst);
+		reverse_link(machine, first_room, last_room);
 		first_room = NULL;
 	}
 }
@@ -41,7 +55,6 @@ void	get_pipes(t_machine *machine)
 {
 	t_list	*token_lst;
 
-	ft_putendl_fd("Get pipes", 2);
 	if (machine->token_lst == NULL)
 		lexer_parser(machine);
 	token_lst = machine->token_lst;

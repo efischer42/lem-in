@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 18:57:59 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/03 21:56:59 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/05 12:01:42 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int		main(void)
 		fct[machine.state](&machine);
 		ft_lstdel(&machine.token_lst, del_token_lst);
 	}
+	solve(&machine);
 	ft_lstdel(&machine.room_lst, del_room_lst);
 	return (ret);
 }

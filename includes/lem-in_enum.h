@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 18:59:22 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/01 19:46:48 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/08 15:12:56 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ enum	e_token
 	COORD_Y,
 	ROOM_NAME,
 	COMMENT
+};
+
+enum	e_link
+{
+	OFF,
+	ON,
+	DEAD
 };
 
 #endif

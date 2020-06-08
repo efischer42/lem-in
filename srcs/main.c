@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 18:57:59 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/08 14:48:46 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/08 15:57:30 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ int		main(void)
 		error(&machine, "Too few informations");
 	solve(&machine);
 	ft_lstdel(&machine.room_lst, del_room_lst);
-	del_mx(&machine);
 	return (ret);
 }

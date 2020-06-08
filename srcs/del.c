@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 20:20:44 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/08 14:50:06 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/08 15:57:22 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,4 @@ void	del_token_lst(void *content, size_t content_size)
 	(void)content_size;
 	ft_strdel(&((t_token*)(content))->value);
 	free(content);
-}
-
-void	del_mx(t_machine *machine)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < machine->map_height)
-	{
-		free(machine->mx[i]);
-		i++;
-	}
-	free(machine->mx);
 }

@@ -18,6 +18,7 @@ SRCS += error.c
 SRCS += find_paths.c
 SRCS += get_ants_nb.c
 SRCS += get_rooms.c
+SRCS += get_paths.c
 SRCS += get_pipes.c
 SRCS += get_word.c
 SRCS += lexer.c

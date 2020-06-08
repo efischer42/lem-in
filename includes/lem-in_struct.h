@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:44:30 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/01 20:32:03 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/08 14:48:19 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ typedef struct	s_room
 	int		ant;
 }				t_room;
 
+typedef	struct	s_next_room
+{
+	t_room	*room;
+	int		link;
+}				t_next_room;
+
 typedef struct 	s_machine
 {
 	enum e_state	state;
@@ -37,7 +43,10 @@ typedef struct 	s_machine
 	t_list			*path_lst;
 	t_room			*start;
 	t_room			*end;
+	t_room			***mx;
 	size_t			ants;
+	size_t			map_width;
+	size_t			map_height;
 	char			*input;
 }				t_machine;
 

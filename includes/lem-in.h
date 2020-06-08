@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:44:01 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/05 12:00:56 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/08 14:18:57 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@
 # include "lem-in_enum.h"
 # include "lem-in_struct.h"
 
+void	del_mx(t_machine *machine);
 void	del_room_lst(void *content, size_t content_size);
 void	del_token_lst(void *content, size_t content_size);
 void	error(t_machine *machine, char *error_msg);
 t_room	*find_room(t_machine *machine, char *name);
+void	generate_mx(t_machine *machine);
 void	get_ants_nb(t_machine *machine);
 void	get_rooms(t_machine *machine);
 void	get_pipes(t_machine *machine);

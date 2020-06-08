@@ -15,6 +15,7 @@ HEAD += lem-in_struct.h
 PATHSRCS = srcs/
 SRCS += del.c
 SRCS += error.c
+SRCS += generate_mx.c
 SRCS += get_ants_nb.c
 SRCS += get_rooms.c
 SRCS += get_pipes.c

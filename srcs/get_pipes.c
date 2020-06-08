@@ -6,14 +6,13 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:13:09 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/05 15:18:12 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/08 14:46:42 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-static void	check_linked_rooms(t_machine *machine, t_room *first_room,
-					t_room *last_room)
+static int		check_linked_rooms(t_room *first_room, t_room *last_room)
 {
 	t_list	*next_rooms;
 
@@ -21,21 +20,27 @@ static void	check_linked_rooms(t_machine *machine, t_room *first_room,
 	while (next_rooms != NULL)
 	{
 		if (ft_strequ(((t_room*)(next_rooms->content))->name, last_room->name))
-			error(machine, "Link already exists");
+			return (TRUE);
 		next_rooms = next_rooms->next;
 	}
+	return (FALSE);
 }
 
 static void	reverse_link(t_machine *machine, t_room *first_room,
 				t_room *last_room)
 {
-	t_room	*tmp;
-	t_list	*new_lst;
+	t_room		*tmp;
+	t_list		*new_lst;
+	t_next_room	next_room;
 
 	tmp = first_room;
 	first_room = find_room(machine, last_room->name);
 	last_room = tmp;
-	new_lst = ft_lstnewnomalloc(last_room, sizeof(*last_room));
+	ft_bzero(&next_room, sizeof(next_room));
+	next_room.room = last_room;
+	new_lst = ft_lstnew(&next_room, sizeof(next_room));
+	if (new_lst == NULL)
+		error(machine, "Cannot allocate memory");
 	ft_lstadd(&first_room->next_rooms, new_lst);
 }
 
@@ -44,6 +49,7 @@ static void	link_rooms(t_machine *machine, t_token *token)
 	static t_room	*first_room = NULL;
 	t_room			*last_room;
 	t_list			*new_lst;
+	t_next_room		next_room;
 
 	if (token->type == ROOM_NAME && first_room == NULL)
 	{
@@ -56,12 +62,16 @@ static void	link_rooms(t_machine *machine, t_token *token)
 		last_room = find_room(machine, token->value);
 		if (last_room == NULL)
 			error(machine, "Trying to link undefined room");
-		else if (first_room == last_room)
-			error(machine, "Cannot link a room with itself");
-		check_linked_rooms(machine, first_room, last_room);
-		new_lst = ft_lstnewnomalloc(last_room, sizeof(*last_room));
-		ft_lstadd(&first_room->next_rooms, new_lst);
-		reverse_link(machine, first_room, last_room);
+		if (check_linked_rooms(first_room, last_room) == FALSE)
+		{
+			ft_bzero(&next_room, sizeof(next_room));
+			next_room.room = last_room;
+			new_lst = ft_lstnew(&next_room, sizeof(next_room));
+			if (new_lst == NULL)
+				error(machine, "Cannot allocate memory");
+			ft_lstadd(&first_room->next_rooms, new_lst);
+			reverse_link(machine, first_room, last_room);
+		}
 		first_room = NULL;
 	}
 }

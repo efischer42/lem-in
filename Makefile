@@ -30,6 +30,7 @@ SRCS += utils.c
 
 PATHDEBUG = debug/
 SRCS += debug.c
+SRCS += debug_paths.c
 SRCS += debug_rooms.c
 
 PATHOBJS = objs/

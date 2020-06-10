@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:44:55 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/09 16:01:40 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/09 17:09:45 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	debug_paths(t_machine *machine)
 	ft_putendl("\nDebug paths\n");
 	while (path_lst != NULL)
 	{
-		path = path_lst->content;
+		path = ((t_path*)(path_lst->content))->lst;
 		while (path != NULL)
 		{
 			print = ft_join_free(print, ((t_room*)(path->content))->name, 1);

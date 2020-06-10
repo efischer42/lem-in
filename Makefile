@@ -25,11 +25,13 @@ SRCS += lexer.c
 SRCS += lexer_parser.c
 SRCS += main.c
 SRCS += parser.c
+SRCS += send_ants.c
 SRCS += solve.c
 SRCS += utils.c
 
 PATHDEBUG = debug/
 SRCS += debug.c
+SRCS += debug_ants.c
 SRCS += debug_paths.c
 SRCS += debug_rooms.c
 

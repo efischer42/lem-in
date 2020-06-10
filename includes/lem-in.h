@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:44:01 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/09 15:02:34 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/10 15:04:42 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,12 @@ void	get_word(t_machine *machine, t_token *token, size_t *pos);
 void	lexer_parser(t_machine *machine);
 void	lexer(t_machine *machine);
 void	parser(t_machine *machine);
+void	send_ants(t_machine *machine);
 void	solve(t_machine *machine);
+void	sort_ants(t_list **lst1, t_list **lst2, t_list **head);
 
 void	debug(t_list *lst);
+void	debug_ants(t_list *ant_lst);
 void	debug_paths(t_machine *machine);
 void	debug_rooms(t_machine *machine);
 

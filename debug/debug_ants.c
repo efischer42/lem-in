@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve.c                                            :+:      :+:    :+:   */
+/*   debug_ants.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/05 11:49:52 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/09 17:11:39 by efischer         ###   ########.fr       */
+/*   Created: 2020/06/10 14:57:23 by efischer          #+#    #+#             */
+/*   Updated: 2020/06/10 15:06:00 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-void	solve(t_machine *machine)
+void	debug_ants(t_list *ant_lst)
 {
-	find_paths(machine, machine->start, NULL);
-	get_paths(machine);
-	debug_paths(machine);
-	send_ants(machine);
+	t_room	*path;
+	char	*print;
+
+	print = NULL;
+	while (ant_lst != NULL)
+	{
+		path = ((t_ant*)(ant_lst->content))->path->content;
+		print = ft_join_free(print, path->name, 1);
+		print = ft_join_free(print, " ", 1);
+		ant_lst = ant_lst->next;
+	}
+	ft_putendl(print);
+	ft_strdel(&print);
 }

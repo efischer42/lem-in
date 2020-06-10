@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 20:34:53 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/06 15:37:57 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/10 15:25:25 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,19 @@ t_room	*find_room(t_machine *machine, char *name)
 		room_lst = room_lst->next;
 	}
 	return (NULL);
+}
+
+void	sort_ants(t_list **lst1, t_list **lst2, t_list **head)
+{
+	if (((t_ant*)((*lst1)->content))->done == TRUE
+		&& ((t_ant*)((*lst2)->content))->done == FALSE)
+	{
+		*head = *lst2;
+		*lst2 = (*lst2)->next;
+	}
+	else
+	{
+		*head = *lst1;
+		*lst1 = (*lst1)->next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:44:30 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/08 15:56:42 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/09 17:37:50 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,18 @@ typedef struct 	s_machine
 	size_t			ants;
 	char			*input;
 }				t_machine;
+
+typedef struct	s_path
+{
+	t_list	*lst;
+	size_t	len;
+}				t_path;
+
+typedef struct	s_ant
+{
+	t_list	*path;
+	char	*id;
+	int		done;
+}				t_ant;
 
 #endif

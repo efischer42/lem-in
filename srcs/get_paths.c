@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 17:23:04 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/09 16:28:03 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/09 17:08:25 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,20 @@ void		get_paths(t_machine *machine)
 {
 	t_list	*next_rooms;
 	t_list	*lst_new;
-	t_list	*lst;
+	t_path	path;
 
 	next_rooms = machine->start->next_rooms;
 	while (next_rooms != NULL)
 	{
-		lst = NULL;
+		ft_bzero(&path, sizeof(path));
 		if (((t_next_room*)(next_rooms->content))->link == ON)
 		{
-			if (get_a_path(machine, &lst, ((t_next_room*)(next_rooms->content))->room) == TRUE)
+			if (get_a_path(machine, &path.lst, ((t_next_room*)(next_rooms->content))->room) == TRUE)
 			{
 				lst_new = ft_lstnewnomalloc(machine->start, sizeof(*machine->start));
-				ft_lstadd(&lst, lst_new);
-				lst_new = ft_lstnew(lst, sizeof(*lst));
+				ft_lstadd(&path.lst, lst_new);
+				path.len = ft_lstlen(path.lst);
+				lst_new = ft_lstnew(&path, sizeof(path));
 				if (lst_new == NULL)
 					error(machine, "Cannot allocate memory");
 				ft_lstaddend(&machine->path_lst, lst_new);

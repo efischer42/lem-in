@@ -6,56 +6,35 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 14:55:54 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/08 17:59:41 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/10 18:55:03 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-static int	reverse_link_exists(t_room *room, t_room *linked_room)
+int			find_paths(t_machine *machine, t_room *room, t_room *last_room)
 {
 	t_list	*next_rooms;
+	int		ret;
 
-	next_rooms = room->next_rooms;
-	while (next_rooms != NULL)
-	{
-		if (((t_next_room*)(next_rooms->content))->room == linked_room
-			&& (((t_next_room*)(next_rooms->content))->link == ON
-			|| ((t_next_room*)(next_rooms->content))->link == DEAD))
-		{
-			((t_next_room*)(next_rooms->content))->link = DEAD;
-			return (TRUE);
-		}
-		next_rooms = next_rooms->next;
-	}
-	return (FALSE);
-}
-
-void		find_paths(t_machine *machine, t_room *room, t_room *last_room)
-{
-	t_list	*next_rooms;
-
+	ret = FALSE;
 	next_rooms = room->next_rooms;
 	if (room == machine->end)
-		return ;
+		return (TRUE);
+	if (room == machine->start)
+		return (FALSE);
 	while (next_rooms != NULL)
 	{
-		if (((t_next_room*)(next_rooms->content))->room != last_room
-			&& ((t_next_room*)(next_rooms->content))->room != machine->start
-			&& ((t_next_room*)(next_rooms->content))->link == OFF)
+		if (next_rooms->content != last_room
+			&& next_rooms->content != machine->start)
 		{
-			if (reverse_link_exists(((t_next_room*)(next_rooms->content))->room,
-				room) == TRUE)
+			if (find_paths(machine, next_rooms->content, room) == TRUE)
 			{
-				((t_next_room*)(next_rooms->content))->link = DEAD;
-			}
-			else
-			{
-				((t_next_room*)(next_rooms->content))->link = ON;
-				find_paths(machine, ((t_next_room*)(next_rooms->content))->room,
-						room);
+				room->link++;
+				ret = TRUE;
 			}
 		}
 		next_rooms = next_rooms->next;
 	}
+	return (ret);
 }

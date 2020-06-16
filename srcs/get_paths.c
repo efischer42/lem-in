@@ -6,63 +6,33 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 17:23:04 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/09 17:08:25 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/16 16:24:29 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-static int	get_a_path(t_machine *machine, t_list **lst, t_room *room)
+static void	add_path_to_lst(t_machine *machine, t_path *path)
 {
-	t_list	*next_rooms;
 	t_list	*lst_new;
-
-	if (room == machine->end)
-	{
-		lst_new = ft_lstnewnomalloc(room, sizeof(*room));
-		ft_lstadd(lst, lst_new);
-		return (TRUE);
-	}
-	next_rooms = room->next_rooms;
-	while (next_rooms != NULL)
-	{
-		if (((t_next_room*)(next_rooms->content))->link == ON)
-		{
-			get_a_path(machine, lst, ((t_next_room*)(next_rooms->content))->room);
-			break ;
-		}
-		next_rooms = next_rooms->next;
-	}
-	if (next_rooms == NULL)
-		return (FALSE);
-	lst_new = ft_lstnewnomalloc(room, sizeof(*room));
-	ft_lstadd(lst, lst_new);
-	return (TRUE);
+	
+	path->len = ft_lstlen(path->lst);
+	lst_new = ft_lstnew(path, sizeof(*path));
+	if (lst_new == NULL)
+		error(machine, "Cannot allocate memory");
+	ft_lstaddend(&machine->path_lst, lst_new);
 }
 
 void		get_paths(t_machine *machine)
 {
-	t_list	*next_rooms;
-	t_list	*lst_new;
+	t_list	*bfs;
 	t_path	path;
 
-	next_rooms = machine->start->next_rooms;
-	while (next_rooms != NULL)
-	{
-		ft_bzero(&path, sizeof(path));
-		if (((t_next_room*)(next_rooms->content))->link == ON)
-		{
-			if (get_a_path(machine, &path.lst, ((t_next_room*)(next_rooms->content))->room) == TRUE)
-			{
-				lst_new = ft_lstnewnomalloc(machine->start, sizeof(*machine->start));
-				ft_lstadd(&path.lst, lst_new);
-				path.len = ft_lstlen(path.lst);
-				lst_new = ft_lstnew(&path, sizeof(path));
-				if (lst_new == NULL)
-					error(machine, "Cannot allocate memory");
-				ft_lstaddend(&machine->path_lst, lst_new);
-			}
-		}
-		next_rooms = next_rooms->next;
-	}
+	bfs = NULL;
+	ft_bzero(&path, sizeof(path));
+	add_to_bfs(machine, &bfs, machine->start, 1);
+	get_a_path(machine, &bfs, &path);
+	if (path.lst != NULL)
+		add_path_to_lst(machine, &path);
+	ft_lstdel(&bfs, del_bfs);
 }

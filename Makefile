@@ -16,6 +16,7 @@ PATHSRCS = srcs/
 SRCS += del.c
 SRCS += error.c
 SRCS += find_paths.c
+SRCS += get_a_path.c
 SRCS += get_ants_nb.c
 SRCS += get_rooms.c
 SRCS += get_paths.c

@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:44:55 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/09 17:09:45 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/10 15:36:33 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	debug_paths(t_machine *machine)
 		print = ft_join_free(print, "\n", 1);
 		path_lst = path_lst->next;
 	}
+	print = ft_join_free(print, "\n", 1);
 	ft_putstr(print);
 	ft_strdel(&print);
 }

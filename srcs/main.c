@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 18:57:59 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/09 16:21:56 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/15 14:15:55 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int		main(void)
 	ft_bzero(&machine, sizeof(machine));
 	while ((ret = get_next_line(STDIN_FILENO, &line)) > 0)
 	{
-		ft_putendl(line);
 		machine.input = line;
 		fct[machine.state](&machine);
 		ft_lstdel(&machine.token_lst, del_token_lst);

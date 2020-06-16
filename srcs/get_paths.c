@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 17:23:04 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/16 16:24:29 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/16 16:37:45 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,16 @@ void		get_paths(t_machine *machine)
 	t_path	path;
 
 	bfs = NULL;
-	ft_bzero(&path, sizeof(path));
 	add_to_bfs(machine, &bfs, machine->start, 1);
-	get_a_path(machine, &bfs, &path);
-	if (path.lst != NULL)
-		add_path_to_lst(machine, &path);
+//	while (1)
+//	{
+		ft_bzero(&path, sizeof(path));
+		get_a_path(machine, &bfs, &path);
+//		if (path.lst == NULL)
+//			break ;
+		if (path.lst != NULL)
+			add_path_to_lst(machine, &path);
+		ft_lstdel(&bfs, del_bfs);
+//	}
 	ft_lstdel(&bfs, del_bfs);
 }

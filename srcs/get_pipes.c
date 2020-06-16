@@ -6,32 +6,40 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:13:09 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/16 15:26:34 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/16 19:35:35 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
+static void	add_next_room(t_machine *machine, t_room *room1, t_room *room2)
+{
+	t_list		*new_lst;
+	t_next_room	next_room;
+
+	ft_bzero(&next_room, sizeof(next_room));
+	next_room.room = room2;
+	new_lst = ft_lstnew(&next_room, sizeof(next_room));
+	if (new_lst == NULL)
+		error(machine, "Cannot allocate memory");
+	ft_lstadd(&room1->next_rooms, new_lst);
+}
+
 static void	reverse_link(t_machine *machine, t_room *first_room,
 				t_room *last_room)
 {
 	t_room		*tmp;
-	t_list		*new_lst;
 
 	tmp = first_room;
 	first_room = find_room(machine->room_lst, last_room->name);
 	last_room = tmp;
-	new_lst = ft_lstnewnomalloc(last_room, sizeof(*last_room));
-	if (new_lst == NULL)
-		error(machine, "Cannot allocate memory");
-	ft_lstadd(&first_room->next_rooms, new_lst);
+	add_next_room(machine, first_room, last_room);
 }
 
 static void	link_rooms(t_machine *machine, t_token *token)
 {
 	static t_room	*first_room = NULL;
 	t_room			*last_room;
-	t_list			*new_lst;
 
 	if (token->type == ROOM_NAME && first_room == NULL)
 	{
@@ -46,10 +54,7 @@ static void	link_rooms(t_machine *machine, t_token *token)
 			error(machine, "Trying to link undefined room");
 		if (find_room(first_room->next_rooms, last_room->name) == NULL)
 		{
-			new_lst = ft_lstnewnomalloc(last_room, sizeof(*last_room));
-			if (new_lst == NULL)
-				error(machine, "Cannot allocate memory");
-			ft_lstadd(&first_room->next_rooms, new_lst);
+			add_next_room(machine, first_room, last_room);
 			reverse_link(machine, first_room, last_room);
 		}
 		first_room = NULL;

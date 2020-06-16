@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 15:54:10 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/16 16:20:04 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/16 20:16:20 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void		add_to_bfs(t_machine *machine, t_list **bfs, t_room *room,
 {
 	t_list	*new_lst;
 
+	room = find_room(machine->room_lst, room->name);
 	if (room->start_dist == 0 || start_dist < room->start_dist)
 		room->start_dist = start_dist;
 	else
@@ -31,8 +32,22 @@ static void	new_path(t_machine *machine, t_list *bfs, t_list **lst)
 {
 	t_list	*lst_new;
 	t_room	*room;
+	t_list	*next_rooms;
 
 	room = bfs->content;
+	if (room != machine->end)
+	{
+		next_rooms = room->next_rooms;
+		while (next_rooms != NULL)
+		{
+			if (ft_strequ(((t_next_room*)(next_rooms->content))->room->name,
+				((t_room*)((*lst)->content))->name) == TRUE)
+			{
+				((t_next_room*)(next_rooms->content))->link = ON;
+			}
+			next_rooms = next_rooms->next;
+		}
+	}
 	lst_new = ft_lstnewnomalloc(room, sizeof(*room));
 	if (lst_new == NULL)
 		error(machine, "Cannot allocate memory");
@@ -44,13 +59,22 @@ static int	check_path(t_list *bfs, t_list *lst)
 {
 	t_room	*last_room;
 	t_room	*cur_room;
+	t_list	*next_rooms;
 
 	last_room = lst->content;
 	cur_room = bfs->content;
+	next_rooms = cur_room->next_rooms;
 	if (cur_room->start_dist < last_room->start_dist)
 	{
-		if (find_room(last_room->next_rooms, cur_room->name) != NULL)
-			return (TRUE);
+		while (next_rooms != NULL)
+		{
+			if (ft_strequ(((t_next_room*)(next_rooms->content))->room->name,
+				 last_room->name) == TRUE)
+			{
+				return (TRUE);
+			}
+			next_rooms = next_rooms->next;
+		}
 	}
 	return (FALSE);
 }
@@ -70,7 +94,7 @@ int			get_a_path(t_machine *machine, t_list **bfs, t_path *path)
 	next_rooms = ((t_room*)((*bfs)->content))->next_rooms;
 	while (next_rooms != NULL)
 	{
-		add_to_bfs(machine, bfs, next_rooms->content,
+		add_to_bfs(machine, bfs, ((t_next_room*)(next_rooms->content))->room,
 			((t_room*)((*bfs)->content))->start_dist + 1);
 		next_rooms = next_rooms->next;
 	}

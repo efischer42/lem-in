@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:44:01 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/16 15:57:21 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/16 16:38:48 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	del_path_lst(void *content, size_t content_size);
 void	del_room_lst(void *content, size_t content_size);
 void	del_token_lst(void *content, size_t content_size);
 void	error(t_machine *machine, char *error_msg);
-int		find_paths(t_machine *machine, t_room *room, t_room *last_room);
 t_room	*find_room(t_list *room_lst, char *name);
 int		get_a_path(t_machine *machine, t_list **bfs, t_path *path);
 void	get_ants_nb(t_machine *machine);

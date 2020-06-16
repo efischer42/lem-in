@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 11:49:52 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/16 16:01:40 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/16 19:51:15 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	solve(t_machine *machine)
 {
-	find_paths(machine, machine->start, NULL);
+	debug_rooms(machine);
 	get_paths(machine);
 	debug_paths(machine);
 	send_ants(machine);

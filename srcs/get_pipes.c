@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:13:09 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/16 19:35:35 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/19 18:41:14 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 static void	add_next_room(t_machine *machine, t_room *room1, t_room *room2)
 {
-	t_list		*new_lst;
-	t_next_room	next_room;
+	t_list	*new_lst;
 
-	ft_bzero(&next_room, sizeof(next_room));
-	next_room.room = room2;
-	new_lst = ft_lstnew(&next_room, sizeof(next_room));
+	new_lst = ft_lstnew(room2, sizeof(*room2));
 	if (new_lst == NULL)
 		error(machine, "Cannot allocate memory");
 	ft_lstadd(&room1->next_rooms, new_lst);

@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:44:01 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/18 13:58:21 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/19 18:45:37 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,13 @@ void	del_bfs(void *content, size_t content_size);
 void	del_nomalloc_lst(void *content, size_t content_size);
 void	del_path_lst(void *content, size_t content_size);
 void	del_room_lst(void *content, size_t content_size);
+void	del_room_mx(t_machine *machine);
 void	del_token_lst(void *content, size_t content_size);
 void	error(t_machine *machine, char *error_msg);
+void	fill_mx_data(t_room ***mx, t_list *room_lst);
 t_room	*find_room(t_list *room_lst, char *name);
+t_room	*find_room_mx(t_room ***mx, t_room *room);
+void	generate_mx(t_machine *machine, t_room ****mx);
 int		get_a_path(t_machine *machine, t_list **bfs, t_path *path);
 void	get_ants_nb(t_machine *machine);
 void	get_rooms(t_machine *machine);

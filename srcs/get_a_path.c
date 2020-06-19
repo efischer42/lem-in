@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 15:54:10 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/17 21:09:02 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/19 18:29:48 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		add_to_bfs(t_machine *machine, t_list **bfs, t_room *room,
 	ft_lstaddend(bfs, new_lst);
 }
 
-static int	check_reverse_link(t_machine *machine, t_room *room1, t_room *room2)
+/*static int	check_reverse_link(t_machine *machine, t_room *room1, t_room *room2)
 {
 	t_list	*next_rooms;
 
@@ -117,11 +117,17 @@ static int	check_path(t_list *bfs, t_list *lst)
 		}
 	}
 	return (FALSE);
-}
+}*/
 
 int			get_a_path(t_machine *machine, t_list **bfs, t_path *path)
 {
-	t_list	*next_rooms;
+	(void)machine;
+	(void)bfs;
+	(void)path;
+
+	ft_putendl("Get a cpath");
+	return (TRUE);
+/*	t_list	*next_rooms;
 	int		ret;
 
 	next_rooms = NULL;
@@ -150,5 +156,5 @@ int			get_a_path(t_machine *machine, t_list **bfs, t_path *path)
 	ret = get_a_path(machine, &(*bfs)->next, path);
 	if (ret == TRUE && check_path(*bfs, path->lst) == TRUE)
 		new_path(machine, *bfs, path);
-	return (ret);
+	return (ret);*/
 }

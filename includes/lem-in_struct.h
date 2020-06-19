@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:44:30 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/18 14:57:38 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/19 18:29:04 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,19 @@ typedef struct	s_token
 
 typedef struct	s_room
 {
-	t_list	*next_rooms;
-	char	*name;
-	size_t	x;
-	size_t	y;
-	int		ant;
-	size_t	start_dist;
+	struct s_room	***mx;
+	t_list			*next_rooms;
+	char			*name;
+	size_t			x;
+	size_t			y;
+	size_t			start_dist;
+	enum e_link		link;
 }				t_room;
-
-typedef struct	s_next_room
-{
-	t_room		*room;
-	enum e_link	link;
-}				t_next_room;
 
 typedef struct 	s_machine
 {
 	enum e_state	state;
+	t_room			***room_mx;
 	t_list			*token_lst;
 	t_list			*last_token;
 	t_list			*room_lst;
@@ -45,6 +41,8 @@ typedef struct 	s_machine
 	t_room			*start;
 	t_room			*end;
 	size_t			ants;
+	size_t			map_width;
+	size_t			map_height;
 	size_t			max_path_nb;
 	char			*input;
 }				t_machine;

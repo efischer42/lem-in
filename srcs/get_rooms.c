@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:11:57 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/15 19:59:37 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/19 18:44:06 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,22 @@ static void	check_new_room(t_machine *machine, t_room *new_room)
 	}
 }
 
-static void	room_data(t_room *new_room, t_token *token)
+static void	room_data(t_machine *machine, t_room *new_room, t_token *token)
 {
 	if (token->type == ROOM_NAME)
 		new_room->name = ft_strdup(token->value);
 	else if (token->type == COORD_X)
+	{
 		new_room->x = ft_atoi(token->value);
+		if (new_room->x + 1 > machine->map_width)
+			machine->map_width = new_room->x + 1;
+	}
 	else if (token->type == COORD_Y)
+	{
 		new_room->y = ft_atoi(token->value);
+		if (new_room->y + 1 > machine->map_height)
+			machine->map_height = new_room->y + 1;
+	}
 	
 }
 
@@ -51,6 +59,8 @@ static int	check_hyphen_token(t_machine *machine, t_room *new_room, t_token *tok
 			error(machine, "No room defined as end");
 		ft_strdel(&new_room->name);
 		machine->state++;
+		generate_mx(machine, &machine->room_mx);
+		fill_mx_data(machine->room_mx, machine->room_lst);
 		get_pipes(machine);
 		return (TRUE);
 	}
@@ -92,7 +102,7 @@ void		get_rooms(t_machine *machine)
 			start = TRUE;
 		else if (((t_token*)(token_lst->content))->type == ROOM_END)
 			end = TRUE;
-		room_data(&new_room, token_lst->content);
+		room_data(machine, &new_room, token_lst->content);
 		token_lst = token_lst->next;
 	}
 	if (new_room.name != NULL && ((t_token*)(token_lst->content))->type == END)

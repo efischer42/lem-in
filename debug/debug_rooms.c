@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 11:51:18 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/17 13:16:34 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/19 18:41:56 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	debug_rooms(t_machine *machine)
 		while (next_rooms != NULL)
 		{
 			print = ft_join_free(print, " - ", 1);
-			print = ft_join_free(print, ((t_next_room*)(next_rooms->content))->room->name, 1);
+			print = ft_join_free(print, ((t_room*)(next_rooms->content))->name, 1);
 			print = ft_join_free(print, ".", 1);
-			print = ft_join_free(print, ft_itoa(((t_next_room*)(next_rooms->content))->link), 3);
+			print = ft_join_free(print, ft_itoa(((t_room*)(next_rooms->content))->link), 3);
 			next_rooms = next_rooms->next;
 		}
 		room_lst = room_lst->next;

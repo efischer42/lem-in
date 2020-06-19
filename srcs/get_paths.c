@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 17:23:04 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/18 15:11:48 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/19 18:40:15 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static void	reset_room_links(t_machine *machine)
 		next_rooms = ((t_room*)(room_lst->content))->next_rooms;
 		while (next_rooms != NULL)
 		{
-			if (((t_next_room*)(next_rooms->content))->link == ON)
-				((t_next_room*)(next_rooms->content))->link = OFF;
+			if (((t_room*)(next_rooms->content))->link == ON)
+				((t_room*)(next_rooms->content))->link = OFF;
 			next_rooms = next_rooms->next;
 		}
 		room_lst = room_lst->next;

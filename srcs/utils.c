@@ -6,11 +6,16 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 20:34:53 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/16 15:20:11 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/19 16:22:44 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
+
+t_room	*find_room_mx(t_room ***mx, t_room *room)
+{
+	return (mx[room->y][room->x]);
+}
 
 t_room	*find_room(t_list *room_lst, char *name)
 {

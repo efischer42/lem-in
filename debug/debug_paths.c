@@ -6,20 +6,18 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:44:55 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/10 15:36:33 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/18 13:58:00 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-void	debug_paths(t_machine *machine)
+void	debug_paths(t_list *path_lst)
 {
-	t_list	*path_lst;
 	t_list	*path;
 	char	*print;
 
 	print = NULL;
-	path_lst = machine->path_lst;
 	ft_putendl("\nDebug paths\n");
 	while (path_lst != NULL)
 	{

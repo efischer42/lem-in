@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 20:20:44 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/16 16:24:09 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/18 13:19:02 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,17 @@ void	del_nomalloc_lst(void *content, size_t content_size)
 	(void)content_size;
 }
 
+void	del_next_rooms_lst(void *content, size_t content_size)
+{
+	(void)content_size;
+	free(content);
+}
+
 void	del_room_lst(void *content, size_t content_size)
 {
 	(void)content_size;
 	ft_strdel(&((t_room*)(content))->name);
-	ft_lstdel(&((t_room*)(content))->next_rooms, del_nomalloc_lst);
+	ft_lstdel(&((t_room*)(content))->next_rooms, del_next_rooms_lst);
 	free(content);
 }
 

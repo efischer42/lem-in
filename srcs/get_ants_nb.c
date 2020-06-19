@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 18:58:22 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/15 14:17:11 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/16 20:48:00 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,4 @@ void	get_ants_nb(t_machine *machine)
 	if (machine->ants == 0)
 		error(machine, "Ants number undefined or null");
 	machine->state++;
-	ft_printf("ants: %d\n", machine->ants);//
 }

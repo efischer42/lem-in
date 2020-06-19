@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:44:30 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/16 19:45:42 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/18 14:57:38 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct 	s_machine
 	t_room			*start;
 	t_room			*end;
 	size_t			ants;
+	size_t			max_path_nb;
 	char			*input;
 }				t_machine;
 

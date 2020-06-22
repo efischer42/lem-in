@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:44:01 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/19 18:45:37 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/22 17:09:05 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	sort_ants(t_list **lst1, t_list **lst2, t_list **head);
 
 void	debug(t_list *lst);
 void	debug_ants(t_list *ant_lst);
+void	debug_mx(t_machine *machine, t_room ***mx);
 void	debug_paths(t_list *path_lst);
 void	debug_rooms(t_machine *machine);
 

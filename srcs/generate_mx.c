@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 15:22:55 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/19 18:45:23 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/22 17:18:44 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,21 @@ void		fill_mx_data(t_room ***mx, t_list *room_lst)
 	}
 }
 
+static void	allocate_rooms(t_machine *machine, t_room **mx)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < machine->map_width)
+	{
+		mx[i] = (t_room*)malloc(sizeof(t_room));
+		if (mx[i] == NULL)
+			error(machine, "Cannot allocates memory");
+		ft_bzero(mx[i], sizeof(*mx[i]));
+		i++;
+	}
+}
+
 static void	allocate_lines(t_machine *machine, t_room ****mx)
 {
 	size_t	i;
@@ -37,6 +52,7 @@ static void	allocate_lines(t_machine *machine, t_room ****mx)
 		if ((*mx)[i] == NULL)
 			error(machine, "Cannot allocate memory");
 		ft_bzero((*mx)[i], sizeof(*(*mx)[i]));
+		allocate_rooms(machine, (*mx)[i]);
 		i++;
 	}
 }

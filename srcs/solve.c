@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 11:49:52 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/19 18:38:30 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/22 17:25:59 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,31 @@ static void	get_max_path_nb(t_machine *machine)
 
 static void	set_next_rooms_mx(t_machine *machine)
 {
-	debug_rooms(machine);
+	t_list	*room_lst;
+	t_room	*room;
+
+	room_lst = machine->room_lst;
+	while (room_lst != NULL)
+	{
+		room = find_room_mx(machine->room_mx, room_lst->content);
+		generate_mx(machine, &room->mx);
+		fill_mx_data(room->mx, ((t_room*)(room_lst->content))->next_rooms);
+		room_lst = room_lst->next;
+	}
 }
 
 void		solve(t_machine *machine)
 {
-//	t_list	*path_lst;
+	t_list	*path_lst;
 
 	get_max_path_nb(machine);
 	set_next_rooms_mx(machine);
-//	get_paths(machine);
-//	path_lst = machine->path_lst;
-//	while (path_lst != NULL)
-//	{
-//		debug_paths(path_lst->content);
-//		path_lst = path_lst->next;
-//	}
+	get_paths(machine);
+	path_lst = machine->path_lst;
+	while (path_lst != NULL)
+	{
+		debug_paths(path_lst->content);
+		path_lst = path_lst->next;
+	}
 //	send_ants(machine);
 }

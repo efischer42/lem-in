@@ -33,6 +33,7 @@ SRCS += utils.c
 PATHDEBUG = debug/
 SRCS += debug.c
 SRCS += debug_ants.c
+SRCS += debug_mx.c
 SRCS += debug_paths.c
 SRCS += debug_rooms.c
 

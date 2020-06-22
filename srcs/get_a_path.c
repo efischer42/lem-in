@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 15:54:10 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/19 18:29:48 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/22 18:01:15 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		add_to_bfs(t_machine *machine, t_list **bfs, t_room *room,
 {
 	t_list	*new_lst;
 
-	room = find_room(machine->room_lst, room->name);
+	room = find_room_mx(machine->room_mx, room);
 	if (room->start_dist == 0 || start_dist < room->start_dist)
 		room->start_dist = start_dist;
 	else
@@ -28,106 +28,65 @@ void		add_to_bfs(t_machine *machine, t_list **bfs, t_room *room,
 	ft_lstaddend(bfs, new_lst);
 }
 
-/*static int	check_reverse_link(t_machine *machine, t_room *room1, t_room *room2)
+static int	check_reverse_link(t_machine *machine, t_room *room1, t_room *room2)
 {
-	t_list	*next_rooms;
-
-	room1 = find_room(machine->room_lst, room1->name);
-	next_rooms = room1->next_rooms;
-	while (next_rooms != NULL)
-	{
-		if (ft_strequ(((t_next_room*)(next_rooms->content))->room->name,
-			room2->name) == TRUE && ((t_next_room*)(next_rooms->content))->link == ON)
-		{
-			return (FALSE);
-		}
-		next_rooms = next_rooms->next;
-	}
+	(void)machine;
+	if (room1->mx[room2->y][room2->x]->name != NULL && room1->mx[room2->y][room2->x]->link == ON)
+		return (FALSE);
 	return (TRUE);
 }
 
 static void	set_link(t_machine *machine, t_room *room1, t_room *room2)
 {
-	t_list	*next_rooms;
-
-	room1 = find_room(machine->room_lst, room1->name);
-	next_rooms = room1->next_rooms;
-	while (next_rooms != NULL)
-	{
-		if (ft_strequ(((t_next_room*)(next_rooms->content))->room->name,
-			room2->name) == TRUE && ((t_next_room*)(next_rooms->content))->link == ON)
-		{
-			((t_next_room*)(next_rooms->content))->link = DEAD;
-		}
-		next_rooms = next_rooms->next;
-	}
+	(void)machine;
+	if (room1->mx[room2->y][room2->x]->name != NULL && room1->mx[room2->y][room2->x]->link == ON)
+		room1->mx[room2->y][room2->x]->link = DEAD;
 }
 
 static void	new_path(t_machine *machine, t_list *bfs, t_path *path)
 {
 	t_list	*lst_new;
-	t_room	*room;
-	t_list	*next_rooms;
+	t_room	*last_room;
+	t_room	*cur_room;
 
-	room = bfs->content;
-	if (room != machine->end)
+	cur_room = bfs->content;
+	if (cur_room != machine->end)
 	{
-		next_rooms = room->next_rooms;
-		while (next_rooms != NULL)
+		last_room = path->lst->content;
+		if (cur_room->mx[last_room->y][last_room->x]->name != NULL)
 		{
-			if (ft_strequ(((t_next_room*)(next_rooms->content))->room->name,
-				((t_room*)(path->lst->content))->name) == TRUE)
+			cur_room->mx[last_room->y][last_room->x]->link = ON;
+			if (check_reverse_link(machine, machine->room_mx[last_room->y][last_room->x],
+				cur_room) == FALSE)
 			{
-				((t_next_room*)(next_rooms->content))->link = ON;
-				if (check_reverse_link(machine, ((t_next_room*)(next_rooms->content))->room,
-					room) == FALSE)
-				{
-					((t_next_room*)(next_rooms->content))->link = DEAD;
-					set_link(machine, ((t_next_room*)(next_rooms->content))->room, room);
-				}
+				cur_room->mx[last_room->y][last_room->x]->link = DEAD;
+				set_link(machine, machine->room_mx[last_room->y][last_room->x], cur_room);
 			}
-			next_rooms = next_rooms->next;
 		}
 	}
-	lst_new = ft_lstnewnomalloc(room, sizeof(*room));
+	lst_new = ft_lstnewnomalloc(cur_room, sizeof(*cur_room));
 	if (lst_new == NULL)
 		error(machine, "Cannot allocate memory");
 	ft_lstadd(&path->lst, lst_new);
 }
 
-static int	check_path(t_list *bfs, t_list *lst)
+static int	check_path(t_machine *machine, t_list *bfs, t_list *lst)
 {
 	t_room	*last_room;
 	t_room	*cur_room;
-	t_list	*next_rooms;
 
+	(void)machine;
 	last_room = lst->content;
 	cur_room = bfs->content;
-	next_rooms = cur_room->next_rooms;
-	if (cur_room->start_dist < last_room->start_dist)
-	{
-		while (next_rooms != NULL)
-		{
-			if (ft_strequ(((t_next_room*)(next_rooms->content))->room->name,
-				 last_room->name) == TRUE)
-			{
-				return (TRUE);
-			}
-			next_rooms = next_rooms->next;
-		}
-	}
+	if (cur_room->mx[last_room->y][last_room->x]->name != NULL && cur_room->start_dist < last_room->start_dist)
+		return (TRUE);
 	return (FALSE);
-}*/
+}
 
 int			get_a_path(t_machine *machine, t_list **bfs, t_path *path)
 {
-	(void)machine;
-	(void)bfs;
-	(void)path;
-
-	ft_putendl("Get a cpath");
-	return (TRUE);
-/*	t_list	*next_rooms;
+	t_list	*next_rooms;
+	t_room	*cur_room;
 	int		ret;
 
 	next_rooms = NULL;
@@ -141,20 +100,21 @@ int			get_a_path(t_machine *machine, t_list **bfs, t_path *path)
 	next_rooms = ((t_room*)((*bfs)->content))->next_rooms;
 	while (next_rooms != NULL)
 	{
-		if (((t_next_room*)(next_rooms->content))->link == OFF)
+		cur_room = next_rooms->content;
+		if (cur_room->link == OFF)
 		{
-			if (check_reverse_link(machine, ((t_next_room*)(next_rooms->content))->room,
+			if (check_reverse_link(machine, machine->room_mx[cur_room->y][cur_room->x],
 				(*bfs)->content) == FALSE)
 			{
 				path->dead = TRUE;
 			}
-			add_to_bfs(machine, bfs, ((t_next_room*)(next_rooms->content))->room,
+			add_to_bfs(machine, bfs, next_rooms->content,
 				((t_room*)((*bfs)->content))->start_dist + 1);
 		}
 		next_rooms = next_rooms->next;
 	}
 	ret = get_a_path(machine, &(*bfs)->next, path);
-	if (ret == TRUE && check_path(*bfs, path->lst) == TRUE)
+	if (ret == TRUE && check_path(machine, *bfs, path->lst) == TRUE)
 		new_path(machine, *bfs, path);
-	return (ret);*/
+	return (ret);
 }

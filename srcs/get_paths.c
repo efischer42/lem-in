@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 17:23:04 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/25 11:48:50 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/25 15:06:52 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ static int	find_best_paths_set(t_machine *machine, t_list *path_lst)
 	}
 	paths_set->nb_turn = (float)((float)machine->ants
 		+ (float)paths_set->total_len) / (float)paths_set->nb_path;
-	ft_printf("cur nb_turn: %d, machine nb_turn: %d\n", (int)paths_set->nb_turn,
-		machine->path_set != NULL ? (int)machine->path_set->nb_turn : 0);	
 	if (machine->path_set == NULL
 		|| paths_set->nb_turn <= machine->path_set->nb_turn)
 	{

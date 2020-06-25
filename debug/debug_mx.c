@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 17:03:35 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/22 17:21:22 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/25 14:51:42 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ void	debug_mx(t_machine *machine, t_room ***mx)
 		x = 0;
 		while (x < machine->map_width)
 		{
-			print = ft_join_free(print, ft_asprintf("%-*s", 5, mx[y][x]->name), 3);
+			if (mx[y][x] != NULL)
+				print = ft_join_free(print, ft_asprintf("%-*s", 6, mx[y][x]->name), 3);
+			else
+				print = ft_join_free(print, "(null)", 1);
 			x++;
 			if (x < machine->map_width)
 				print = ft_join_free(print, " ", 1);

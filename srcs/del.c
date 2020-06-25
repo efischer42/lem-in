@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 20:20:44 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/22 18:13:32 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/25 15:03:47 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,6 @@ static void	del_mx(t_machine *machine, t_room ***mx)
 		while (y < machine->map_height)
 		{
 			x = 0;
-			while (x < machine->map_width)
-			{
-				if (mx[y][x]->name == NULL)
-					free(mx[y][x]);
-				x++;
-			}
 			free(mx[y]);
 			y++;
 		}

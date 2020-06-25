@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 15:54:10 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/22 18:01:15 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/25 15:07:17 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,16 @@ void		add_to_bfs(t_machine *machine, t_list **bfs, t_room *room,
 	ft_lstaddend(bfs, new_lst);
 }
 
-static int	check_reverse_link(t_machine *machine, t_room *room1, t_room *room2)
+static int	check_reverse_link(t_room *room1, t_room *room2)
 {
-	(void)machine;
-	if (room1->mx[room2->y][room2->x]->name != NULL && room1->mx[room2->y][room2->x]->link == ON)
+	if (room1->mx[room2->y][room2->x] != NULL && room1->mx[room2->y][room2->x]->link == ON)
 		return (FALSE);
 	return (TRUE);
 }
 
-static void	set_link(t_machine *machine, t_room *room1, t_room *room2)
+static void	set_link(t_room *room1, t_room *room2)
 {
-	(void)machine;
-	if (room1->mx[room2->y][room2->x]->name != NULL && room1->mx[room2->y][room2->x]->link == ON)
+	if (room1->mx[room2->y][room2->x] != NULL && room1->mx[room2->y][room2->x]->link == ON)
 		room1->mx[room2->y][room2->x]->link = DEAD;
 }
 
@@ -53,14 +51,14 @@ static void	new_path(t_machine *machine, t_list *bfs, t_path *path)
 	if (cur_room != machine->end)
 	{
 		last_room = path->lst->content;
-		if (cur_room->mx[last_room->y][last_room->x]->name != NULL)
+		if (cur_room->mx[last_room->y][last_room->x] != NULL)
 		{
 			cur_room->mx[last_room->y][last_room->x]->link = ON;
-			if (check_reverse_link(machine, machine->room_mx[last_room->y][last_room->x],
+			if (check_reverse_link(machine->room_mx[last_room->y][last_room->x],
 				cur_room) == FALSE)
 			{
 				cur_room->mx[last_room->y][last_room->x]->link = DEAD;
-				set_link(machine, machine->room_mx[last_room->y][last_room->x], cur_room);
+				set_link(machine->room_mx[last_room->y][last_room->x], cur_room);
 			}
 		}
 	}
@@ -78,7 +76,7 @@ static int	check_path(t_machine *machine, t_list *bfs, t_list *lst)
 	(void)machine;
 	last_room = lst->content;
 	cur_room = bfs->content;
-	if (cur_room->mx[last_room->y][last_room->x]->name != NULL && cur_room->start_dist < last_room->start_dist)
+	if (cur_room->mx[last_room->y][last_room->x] != NULL && cur_room->start_dist < last_room->start_dist)
 		return (TRUE);
 	return (FALSE);
 }
@@ -103,7 +101,7 @@ int			get_a_path(t_machine *machine, t_list **bfs, t_path *path)
 		cur_room = next_rooms->content;
 		if (cur_room->link == OFF)
 		{
-			if (check_reverse_link(machine, machine->room_mx[cur_room->y][cur_room->x],
+			if (check_reverse_link(machine->room_mx[cur_room->y][cur_room->x],
 				(*bfs)->content) == FALSE)
 			{
 				path->dead = TRUE;

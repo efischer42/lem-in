@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 11:49:52 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/25 11:52:16 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/25 15:07:32 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,8 @@ static void	set_next_rooms_mx(t_machine *machine)
 
 void		solve(t_machine *machine)
 {
-	ft_printf("nb ants: %d\n", machine->ants);
 	get_max_path_nb(machine);
 	set_next_rooms_mx(machine);
 	get_paths(machine);
-	debug_paths(machine->path_set->paths);
 	send_ants(machine);
 }

@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 20:20:44 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/25 15:03:47 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/25 15:22:04 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	del_path_lst(void *content, size_t content_size)
 {
 	(void)content_size;
 	ft_lstdel(&((t_path*)(content))->lst, del_nomalloc_lst);
+	free(content);
 }
 
 void	del_token_lst(void *content, size_t content_size)
@@ -91,5 +92,14 @@ void	del_room_mx(t_machine *machine)
 			room_lst = room_lst->next;
 		}
 		del_mx(machine, machine->room_mx);
+	}
+}
+
+void	del_path_set(t_paths_set *path_set)
+{
+	if (path_set != NULL)
+	{
+		ft_lstdel(&path_set->paths, del_path_lst);
+		free(path_set);
 	}
 }

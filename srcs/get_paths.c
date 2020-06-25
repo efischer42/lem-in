@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 17:23:04 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/25 15:06:52 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/25 15:17:02 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ static int	find_best_paths_set(t_machine *machine, t_list *path_lst)
 	if (machine->path_set == NULL
 		|| paths_set->nb_turn <= machine->path_set->nb_turn)
 	{
-		free(machine->path_set);
+		del_path_set(machine->path_set);
 		machine->path_set = paths_set;
 		return (TRUE);
 	}
-	free(paths_set);
+	del_path_set(paths_set);
 	return (FALSE);
 }
 

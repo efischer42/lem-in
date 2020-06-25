@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 18:57:59 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/19 16:54:08 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/25 15:17:55 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ int		main(void)
 	del_room_mx(&machine);
 	ft_lstdel(&machine.path_lst, del_path_lst);
 	ft_lstdel(&machine.room_lst, del_room_lst);
+	del_path_set(machine.path_set);
 	return (ret);
 }

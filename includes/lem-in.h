@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:44:01 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/25 15:04:26 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/25 15:17:22 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	del_ant_lst(void *content, size_t content_size);
 void	del_bfs(void *content, size_t content_size);
 void	del_nomalloc_lst(void *content, size_t content_size);
 void	del_path_lst(void *content, size_t content_size);
+void	del_path_set(t_paths_set *path_set);
 void	del_room_lst(void *content, size_t content_size);
 void	del_room_mx(t_machine *machine);
 void	del_token_lst(void *content, size_t content_size);

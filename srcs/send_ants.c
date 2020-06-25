@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 17:11:48 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/16 16:18:03 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/25 11:53:05 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	new_ants(t_machine *machine, t_list **ant_lst, size_t *i)
 	t_ant			ant;
 	size_t			nb_turn;
 
-	path_lst = machine->path_lst;
+	path_lst = machine->path_set->paths;
 	if (shortest_path == NULL)
 		shortest_path = get_shortest_path(path_lst);
 	nb_turn = ((t_path*)(shortest_path->content))->len + machine->ants - *i;

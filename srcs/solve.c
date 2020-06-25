@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 11:49:52 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/22 17:25:59 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/25 11:52:16 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	get_max_path_nb(t_machine *machine)
 	len = ft_lstlen(machine->end->next_rooms);
 	if (len < machine->max_path_nb)
 		machine->max_path_nb = len;
-	ft_printf("max path nb: %d\n", machine->max_path_nb);
 }
 
 static void	set_next_rooms_mx(t_machine *machine)
@@ -41,16 +40,10 @@ static void	set_next_rooms_mx(t_machine *machine)
 
 void		solve(t_machine *machine)
 {
-	t_list	*path_lst;
-
+	ft_printf("nb ants: %d\n", machine->ants);
 	get_max_path_nb(machine);
 	set_next_rooms_mx(machine);
 	get_paths(machine);
-	path_lst = machine->path_lst;
-	while (path_lst != NULL)
-	{
-		debug_paths(path_lst->content);
-		path_lst = path_lst->next;
-	}
-//	send_ants(machine);
+	debug_paths(machine->path_set->paths);
+	send_ants(machine);
 }

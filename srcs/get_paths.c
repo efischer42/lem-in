@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 17:23:04 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/19 18:40:15 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/25 11:48:50 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,34 @@ static void	add_path_to_lst(t_machine *machine, t_list **lst, t_path *path)
 	}
 }
 
-static void	add_lst_to_lst(t_machine *machine, t_list *lst)
+static int	find_best_paths_set(t_machine *machine, t_list *path_lst)
 {
-	t_list	*lst_new;
+	t_paths_set	*paths_set;
+	t_list		*lst;
 	
-	lst_new = ft_lstnew(lst, sizeof(*lst));
-	if (lst_new == NULL)
-		error(machine, "Cannot allocate memory");
-	ft_lstaddend(&machine->path_lst, lst_new);
+	lst = path_lst;
+	paths_set = (t_paths_set*)malloc(sizeof(*paths_set));
+	ft_bzero(paths_set, sizeof(*paths_set));
+	paths_set->paths = path_lst;
+	paths_set->nb_path = ft_lstlen(path_lst);
+	while (lst != NULL)
+	{
+		paths_set->total_len += ((t_path*)(lst->content))->len - 1;
+		lst = lst->next;
+	}
+	paths_set->nb_turn = (float)((float)machine->ants
+		+ (float)paths_set->total_len) / (float)paths_set->nb_path;
+	ft_printf("cur nb_turn: %d, machine nb_turn: %d\n", (int)paths_set->nb_turn,
+		machine->path_set != NULL ? (int)machine->path_set->nb_turn : 0);	
+	if (machine->path_set == NULL
+		|| paths_set->nb_turn <= machine->path_set->nb_turn)
+	{
+		free(machine->path_set);
+		machine->path_set = paths_set;
+		return (TRUE);
+	}
+	free(paths_set);
+	return (FALSE);
 }
 
 static void	reset_room_links(t_machine *machine)
@@ -59,21 +79,21 @@ static void	reset_room_links(t_machine *machine)
 
 void		get_paths(t_machine *machine)
 {
-	t_list	*bfs;
-	t_path	path;
-	t_list	*lst;
-	size_t	i;
-	int		dead;
+	t_list		*bfs;
+	t_path		path;
+	t_list		*lst;
+	size_t		i;
+	int			dead;
 
 	bfs = NULL;
 	while (1)
 	{
-		i = 0;
 		lst = NULL;
+		i = 0;
 		dead = FALSE;
 		while (i < machine->max_path_nb)
 		{
-			debug_rooms(machine);
+		//	debug_rooms(machine);
 			add_to_bfs(machine, &bfs, machine->start, 1);
 			ft_bzero(&path, sizeof(path));
 			get_a_path(machine, &bfs, &path);
@@ -87,8 +107,7 @@ void		get_paths(t_machine *machine)
 		}
 		ft_lstdel(&bfs, del_bfs);
 		reset_room_links(machine);
-		add_lst_to_lst(machine, lst);
-		if (dead == FALSE)
+		if (find_best_paths_set(machine, lst) == FALSE || dead == FALSE)
 			break ;
 	}
 }

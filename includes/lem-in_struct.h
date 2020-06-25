@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:44:30 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/19 18:29:04 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/25 11:46:06 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,21 @@ typedef struct	s_room
 	enum e_link		link;
 }				t_room;
 
+typedef struct	s_path
+{
+	t_list	*lst;
+	size_t	len;
+	int		dead;
+}				t_path;
+
+typedef struct	s_paths_set
+{
+	t_list	*paths;
+	size_t	nb_path;
+	size_t	total_len;
+	float	nb_turn;
+}				t_paths_set;
+
 typedef struct 	s_machine
 {
 	enum e_state	state;
@@ -38,6 +53,7 @@ typedef struct 	s_machine
 	t_list			*last_token;
 	t_list			*room_lst;
 	t_list			*path_lst;
+	t_paths_set		*path_set;
 	t_room			*start;
 	t_room			*end;
 	size_t			ants;
@@ -46,13 +62,6 @@ typedef struct 	s_machine
 	size_t			max_path_nb;
 	char			*input;
 }				t_machine;
-
-typedef struct	s_path
-{
-	t_list	*lst;
-	size_t	len;
-	int		dead;
-}				t_path;
 
 typedef struct	s_ant
 {

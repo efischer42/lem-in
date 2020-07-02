@@ -6,11 +6,13 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 11:49:52 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/25 15:07:32 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/03 00:04:24 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
+
+#include <stdio.h>//
 
 static void	get_max_path_nb(t_machine *machine)
 {
@@ -23,25 +25,12 @@ static void	get_max_path_nb(t_machine *machine)
 		machine->max_path_nb = len;
 }
 
-static void	set_next_rooms_mx(t_machine *machine)
-{
-	t_list	*room_lst;
-	t_room	*room;
-
-	room_lst = machine->room_lst;
-	while (room_lst != NULL)
-	{
-		room = find_room_mx(machine->room_mx, room_lst->content);
-		generate_mx(machine, &room->mx);
-		fill_mx_data(room->mx, ((t_room*)(room_lst->content))->next_rooms);
-		room_lst = room_lst->next;
-	}
-}
-
 void		solve(t_machine *machine)
 {
+	ft_printf("nb ants: %d\n", machine->ants);
+	ft_printf("Start: %s\n", machine->start->name);
 	get_max_path_nb(machine);
-	set_next_rooms_mx(machine);
 	get_paths(machine);
+	printf("nb turn: %f\n", machine->path_set->nb_turn);
 	send_ants(machine);
 }

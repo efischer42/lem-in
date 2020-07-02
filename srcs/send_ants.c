@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 17:11:48 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/25 11:53:05 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/03 00:05:23 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,15 @@ static void	new_ants(t_machine *machine, t_list **ant_lst, size_t *i)
 	t_list			*path_lst;
 	t_list			*lst_new;
 	t_ant			ant;
-	size_t			nb_turn;
 
 	path_lst = machine->path_set->paths;
 	if (shortest_path == NULL)
 		shortest_path = get_shortest_path(path_lst);
-	nb_turn = ((t_path*)(shortest_path->content))->len + machine->ants - *i;
 	while (path_lst != NULL && (*i) <= machine->ants)
 	{
 		ft_bzero(&ant, sizeof(ant));
-		if (nb_turn >= ((t_path*)(path_lst->content))->len
+		if ((size_t)machine->path_set->nb_turn
+			>= ((t_path*)(path_lst->content))->len - 1
 			|| path_lst == shortest_path)
 		{
 			ant.id = ft_join_free("L", ft_itoa(*i), 2);
@@ -90,6 +89,7 @@ static void	moove_ants(t_machine *machine, t_list **ant_lst)
 	}
 	*ant_lst = head;
 	ft_merge_sort(ant_lst, sort_ants);
+	machine->path_set->nb_turn--;
 }
 
 void		send_ants(t_machine *machine)

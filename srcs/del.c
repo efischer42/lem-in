@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 20:20:44 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/25 15:22:04 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/25 18:21:02 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,39 +59,19 @@ void	del_bfs(void *content, size_t content_size)
 	((t_room*)(content))->start_dist = 0;
 }
 
-static void	del_mx(t_machine *machine, t_room ***mx)
-{
-	size_t	x;
-	size_t	y;
-
-	y = 0;
-	if (mx != NULL)
-	{
-		while (y < machine->map_height)
-		{
-			x = 0;
-			free(mx[y]);
-			y++;
-		}
-		free(mx);
-	}
-}
-
 void	del_room_mx(t_machine *machine)
 {
-	t_list	*room_lst;
-	t_room	*room;
+	size_t	y;
 
 	if (machine->room_mx != NULL)
 	{
-		room_lst = machine->room_lst;
-		while (room_lst != NULL)
+		y = 0;
+		while (y < machine->map_height)
 		{
-			room = find_room_mx(machine->room_mx, room_lst->content);
-			del_mx(machine, room->mx);
-			room_lst = room_lst->next;
+			free(machine->room_mx[y]);
+			y++;
 		}
-		del_mx(machine, machine->room_mx);
+		free(machine->room_mx);
 	}
 }
 

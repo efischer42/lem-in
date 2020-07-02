@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:44:01 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/25 15:17:22 by efischer         ###   ########.fr       */
+/*   Updated: 2020/06/30 14:50:40 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "lem-in_enum.h"
 # include "lem-in_struct.h"
 
-void	add_to_bfs(t_machine *machine, t_list **bfs, t_room *room,
+int		add_to_bfs(t_machine *machine, t_list **bfs, t_room *room,
 			size_t start_dist);
 void	del_ant_lst(void *content, size_t content_size);
 void	del_bfs(void *content, size_t content_size);

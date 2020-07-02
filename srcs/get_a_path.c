@@ -6,13 +6,13 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 15:54:10 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/25 15:07:17 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/02 22:16:43 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-void		add_to_bfs(t_machine *machine, t_list **bfs, t_room *room,
+int			add_to_bfs(t_machine *machine, t_list **bfs, t_room *room,
 				size_t start_dist)
 {
 	t_list	*new_lst;
@@ -21,24 +21,34 @@ void		add_to_bfs(t_machine *machine, t_list **bfs, t_room *room,
 	if (room->start_dist == 0 || start_dist < room->start_dist)
 		room->start_dist = start_dist;
 	else
-		return ;
+		return (FALSE);
 	new_lst = ft_lstnewnomalloc(room, sizeof(*room));
 	if (new_lst == NULL)
 		error(machine, "Cannot allocate memory");
 	ft_lstaddend(bfs, new_lst);
+	return (TRUE);
 }
 
 static int	check_reverse_link(t_room *room1, t_room *room2)
 {
-	if (room1->mx[room2->y][room2->x] != NULL && room1->mx[room2->y][room2->x]->link == ON)
+	t_room	*room;
+
+	room = find_room(room1->next_rooms, room2->name);
+	if (room != NULL && (room->link == ON || room->link == DEAD))
 		return (FALSE);
 	return (TRUE);
 }
 
 static void	set_link(t_room *room1, t_room *room2)
 {
-	if (room1->mx[room2->y][room2->x] != NULL && room1->mx[room2->y][room2->x]->link == ON)
-		room1->mx[room2->y][room2->x]->link = DEAD;
+	t_room	*room;
+
+	room = find_room(room1->next_rooms, room2->name);
+	if (room != NULL && (room->link == ON || room->link == DEAD))
+	{
+		room->link = DEAD;
+	//	ft_printf("set to dead: %s %d\n", room->name, room->link);
+	}
 }
 
 static void	new_path(t_machine *machine, t_list *bfs, t_path *path)
@@ -46,18 +56,22 @@ static void	new_path(t_machine *machine, t_list *bfs, t_path *path)
 	t_list	*lst_new;
 	t_room	*last_room;
 	t_room	*cur_room;
+	t_room	*room;
 
 	cur_room = bfs->content;
 	if (cur_room != machine->end)
 	{
 		last_room = path->lst->content;
-		if (cur_room->mx[last_room->y][last_room->x] != NULL)
+		room = find_room(cur_room->next_rooms, last_room->name);
+		if (room != NULL)
 		{
-			cur_room->mx[last_room->y][last_room->x]->link = ON;
+			room->link = ON;
 			if (check_reverse_link(machine->room_mx[last_room->y][last_room->x],
 				cur_room) == FALSE)
 			{
-				cur_room->mx[last_room->y][last_room->x]->link = DEAD;
+				path->dead = TRUE;
+				room->link = DEAD;
+				ft_printf("set to dead: %s %d\n", room->name, room->link);
 				set_link(machine->room_mx[last_room->y][last_room->x], cur_room);
 			}
 		}
@@ -68,16 +82,18 @@ static void	new_path(t_machine *machine, t_list *bfs, t_path *path)
 	ft_lstadd(&path->lst, lst_new);
 }
 
-static int	check_path(t_machine *machine, t_list *bfs, t_list *lst)
+static int	check_path(t_list *bfs, t_list *lst)
 {
 	t_room	*last_room;
 	t_room	*cur_room;
 
-	(void)machine;
 	last_room = lst->content;
 	cur_room = bfs->content;
-	if (cur_room->mx[last_room->y][last_room->x] != NULL && cur_room->start_dist < last_room->start_dist)
+	if (find_room(cur_room->next_rooms, last_room->name) != NULL
+		 && cur_room->start_dist < last_room->start_dist)
+	{
 		return (TRUE);
+	}
 	return (FALSE);
 }
 
@@ -99,20 +115,15 @@ int			get_a_path(t_machine *machine, t_list **bfs, t_path *path)
 	while (next_rooms != NULL)
 	{
 		cur_room = next_rooms->content;
-		if (cur_room->link == OFF)
+		if (cur_room->link == OFF && ft_strequ(cur_room->name, machine->start->name) == FALSE)
 		{
-			if (check_reverse_link(machine->room_mx[cur_room->y][cur_room->x],
-				(*bfs)->content) == FALSE)
-			{
-				path->dead = TRUE;
-			}
 			add_to_bfs(machine, bfs, next_rooms->content,
 				((t_room*)((*bfs)->content))->start_dist + 1);
 		}
 		next_rooms = next_rooms->next;
 	}
 	ret = get_a_path(machine, &(*bfs)->next, path);
-	if (ret == TRUE && check_path(machine, *bfs, path->lst) == TRUE)
+	if (ret == TRUE && check_path(*bfs, path->lst) == TRUE)
 		new_path(machine, *bfs, path);
 	return (ret);
 }

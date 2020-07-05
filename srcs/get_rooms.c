@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:11:57 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/05 21:20:41 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/05 21:25:56 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void		get_rooms(t_machine *machine)
 	t_list		*token_lst;
 	t_room		new_room;
 
-	ft_putendl(machine->input);
 	ft_bzero(&new_room, sizeof(new_room));
 	lexer_parser(machine);
 	token_lst = machine->token_lst;

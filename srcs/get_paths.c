@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 17:23:04 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/05 19:04:52 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/05 21:42:51 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ void		get_paths(t_machine *machine)
 			ft_lstdel(&bfs, del_bfs);
 			i++;
 		}
+		if (lst == NULL)
+			error(machine, "No valid path");
 		ft_lstdel(&bfs, del_bfs);
 		reset_room_links(machine);
 		if (find_best_paths_set(machine, lst) == FALSE || dead == FALSE)

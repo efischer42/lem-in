@@ -27,6 +27,7 @@ SRCS += lexer_parser.c
 SRCS += main.c
 SRCS += parser.c
 SRCS += send_ants.c
+SRCS += set_capacity.c
 SRCS += solve.c
 SRCS += utils.c
 

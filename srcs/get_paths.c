@@ -6,36 +6,40 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 17:23:04 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/03 00:13:06 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/05 19:04:52 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-#include <stdio.h>//
-
 static int	add_path_to_lst(t_machine *machine, t_list **lst, t_path *path)
 {
 	t_list	*lst_new;
-	float	res;
+	size_t	shortest_len;
+	size_t	res;
 	
 	path->len = ft_lstlen(path->lst);
 	lst_new = ft_lstnew(path, sizeof(*path));
 	if (lst_new == NULL)
 		error(machine, "Cannot allocate memory");
-	res = (float)((float)machine->ants / (float)(ft_lstlen(*lst) + 1)
-		+ path->len - ft_lstlen((*lst)) - 1 + path->len -
-		((*lst) == NULL ? 0 : ((t_path*)((*lst)->content))->len - 1));
-	printf("res: %f\n", res);//
-	if (machine->nb_turn == 0 || res < machine->nb_turn)
-	{
-		machine->nb_turn = res;
+	if ((*lst) == NULL)
+		shortest_len = path->len;
+	else
+		shortest_len = ((t_path*)((*lst)->content))->len;
+	res = (float)machine->ants / (float)(ft_lstlen(*lst) + 1) + shortest_len
+		- 2 + path->len - shortest_len;
+//	ft_printf("path len: %d\n", path->len);//
+//	ft_printf("res: %d\n", res);//
+//	if (machine->nb_turn == 0 || res < machine->nb_turn || *lst == NULL)
+//	{
+		if (machine->nb_turn == 0 || res < machine->nb_turn)
+			machine->nb_turn = res;
 		ft_lstaddend(lst, lst_new);
 		return (TRUE);
-	}
-	free(lst_new->content);
-	free(lst_new);
-	return (FALSE);
+//	}
+//	free(lst_new->content);
+//	free(lst_new);
+//	return (FALSE);
 }
 
 static int	find_best_paths_set(t_machine *machine, t_list *path_lst)
@@ -59,7 +63,6 @@ static int	find_best_paths_set(t_machine *machine, t_list *path_lst)
 //		del_path_set(paths_set);
 //		return (TRUE);
 //	}
-	ft_putendl("FALSE");//
 	del_path_set(paths_set);
 	return (FALSE);
 }
@@ -94,7 +97,7 @@ void		get_paths(t_machine *machine)
 	bfs = NULL;
 	while (1)
 	{
-		ft_putendl("\nget path set");
+	//	ft_putendl("\nget path set");
 		lst = NULL;
 		i = 0;
 		dead = FALSE;
@@ -125,5 +128,5 @@ void		get_paths(t_machine *machine)
 		if (find_best_paths_set(machine, lst) == FALSE || dead == FALSE)
 			break ;
 	}
-	debug_paths(machine->path_set->paths);
+	//debug_paths(machine->path_set->paths);//
 }

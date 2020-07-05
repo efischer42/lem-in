@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 17:11:48 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/03 00:05:23 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/05 21:08:39 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,27 @@ static void	new_ants(t_machine *machine, t_list **ant_lst, size_t *i)
 	t_list			*path_lst;
 	t_list			*lst_new;
 	t_ant			ant;
+	size_t			nb_ants;
 
+	nb_ants = machine->ants - *i;
 	path_lst = machine->path_set->paths;
 	if (shortest_path == NULL)
 		shortest_path = get_shortest_path(path_lst);
 	while (path_lst != NULL && (*i) <= machine->ants)
 	{
 		ft_bzero(&ant, sizeof(ant));
-		if ((size_t)machine->path_set->nb_turn
-			>= ((t_path*)(path_lst->content))->len - 1
+		//if (((t_path*)(path_lst->content))->capacity > 0
+		//	|| path_lst == shortest_path)
+		if ((((t_path*)(shortest_path->content))->len + nb_ants
+			> ((t_path*)(path_lst->content))->len
+			&& ((t_path*)(path_lst->content))->capacity > 0)
 			|| path_lst == shortest_path)
 		{
 			ant.id = ft_join_free("L", ft_itoa(*i), 2);
 			ant.path = ((t_path*)(path_lst->content))->lst->next;
 			lst_new = ft_lstnew(&ant, sizeof(ant));
 			ft_lstaddend(ant_lst, lst_new);
+			((t_path*)(path_lst->content))->capacity--;
 			(*i)++;
 		}
 		path_lst = path_lst->next;

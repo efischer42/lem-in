@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 15:54:10 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/02 22:16:43 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/03 13:56:40 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	new_path(t_machine *machine, t_list *bfs, t_path *path)
 			{
 				path->dead = TRUE;
 				room->link = DEAD;
-				ft_printf("set to dead: %s %d\n", room->name, room->link);
+				//ft_printf("set to dead: %s %d\n", room->name, room->link);
 				set_link(machine->room_mx[last_room->y][last_room->x], cur_room);
 			}
 		}

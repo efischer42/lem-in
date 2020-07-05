@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:44:30 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/03 00:04:18 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/04 19:39:47 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct	s_path
 {
 	t_list	*lst;
 	size_t	len;
+	size_t	capacity;
 	int		dead;
 }				t_path;
 
@@ -40,7 +41,8 @@ typedef struct	s_paths_set
 {
 	t_list	*paths;
 	size_t	nb_path;
-	float	nb_turn;
+	size_t	nb_turn;
+	size_t	longest_len;
 }				t_paths_set;
 
 typedef struct 	s_machine
@@ -58,7 +60,7 @@ typedef struct 	s_machine
 	size_t			map_width;
 	size_t			map_height;
 	size_t			max_path_nb;
-	float			nb_turn;
+	size_t			nb_turn;
 	char			*input;
 }				t_machine;
 

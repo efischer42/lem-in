@@ -6,11 +6,11 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 18:58:41 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/01 20:48:03 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:15:00 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 static void	get_last_token(t_machine *machine)
 {

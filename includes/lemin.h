@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.h                                           :+:      :+:    :+:   */
+/*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/01 19:44:01 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/04 19:50:51 by efischer         ###   ########.fr       */
+/*   Created: 2020/07/07 10:12:47 by efischer          #+#    #+#             */
+/*   Updated: 2020/07/07 10:13:03 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_H
-# define LEM_IN_H
+#ifndef LEMIN_H
+# define LEMIN_H
 
 # define TAB_END	-1
 # define NB_FCT		3
 # define NB_TOKEN	9
 
 # include "libft.h"
-# include "lem-in_enum.h"
-# include "lem-in_struct.h"
+# include "lemin_enum.h"
+# include "lemin_struct.h"
 
 int		add_to_bfs(t_machine *machine, t_list **bfs, t_room *room,
 			size_t start_dist);

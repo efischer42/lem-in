@@ -6,11 +6,11 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 14:57:23 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/10 15:06:00 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:16:59 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 void	debug_ants(t_list *ant_lst)
 {

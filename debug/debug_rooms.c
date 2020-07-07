@@ -6,11 +6,11 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 11:51:18 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/19 18:41:56 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:17:18 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 void	debug_rooms(t_machine *machine)
 {

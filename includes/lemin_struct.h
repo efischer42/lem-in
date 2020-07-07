@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in_struct.h                                    :+:      :+:    :+:   */
+/*   lemin_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/01 19:44:30 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/04 19:39:47 by efischer         ###   ########.fr       */
+/*   Created: 2020/07/07 10:13:08 by efischer          #+#    #+#             */
+/*   Updated: 2020/07/07 10:13:47 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_STRUCT_H
-# define LEM_IN_STRUCT_H
+#ifndef LEMIN_STRUCT_H
+# define LEMIN_STRUCT_H
 
 typedef struct	s_token
 {
@@ -45,7 +45,7 @@ typedef struct	s_paths_set
 	size_t	longest_len;
 }				t_paths_set;
 
-typedef struct 	s_machine
+typedef struct	s_machine
 {
 	enum e_state	state;
 	t_room			***room_mx;

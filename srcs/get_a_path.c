@@ -6,11 +6,11 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 15:54:10 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/03 13:56:40 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:14:36 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 int			add_to_bfs(t_machine *machine, t_list **bfs, t_room *room,
 				size_t start_dist)

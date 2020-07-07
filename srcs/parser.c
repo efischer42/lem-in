@@ -6,11 +6,11 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 18:57:48 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/05 14:55:57 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:15:14 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 static void	init_enum_tab(enum e_token **enum_tab)
 {

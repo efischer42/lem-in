@@ -8,9 +8,9 @@ CFLAGS += -Werror
 DFLAGS += -fsanitize=address,undefined -g3
 
 INCLUDES = includes/
-HEAD += lem-in.h
-HEAD += lem-in_enum.h
-HEAD += lem-in_struct.h
+HEAD += lemin.h
+HEAD += lemin_enum.h
+HEAD += lemin_struct.h
 
 PATHSRCS = srcs/
 SRCS += del.c

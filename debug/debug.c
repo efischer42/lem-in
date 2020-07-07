@@ -6,11 +6,11 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 20:02:48 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/01 20:16:09 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:17:04 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 static void init_token_tab(char **token_tab)
 {

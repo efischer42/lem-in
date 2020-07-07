@@ -6,11 +6,11 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:11:57 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/05 21:25:56 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:14:50 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 static void	check_new_room(t_machine *machine, t_room *new_room)
 {

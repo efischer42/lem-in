@@ -6,11 +6,11 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:13:09 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/19 18:41:14 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:14:45 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 static void	add_next_room(t_machine *machine, t_room *room1, t_room *room2)
 {

@@ -6,11 +6,11 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 20:34:53 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/19 16:22:44 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:15:33 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 t_room	*find_room_mx(t_room ***mx, t_room *room)
 {

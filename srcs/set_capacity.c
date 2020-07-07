@@ -6,11 +6,11 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 19:08:37 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/05 18:51:37 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:15:24 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 void	set_capacity(t_machine *machine, t_list *paths)
 {

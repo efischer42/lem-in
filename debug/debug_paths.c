@@ -6,11 +6,11 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:44:55 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/18 13:58:00 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:17:13 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 void	debug_paths(t_list *path_lst)
 {

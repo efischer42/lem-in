@@ -6,11 +6,11 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 18:58:12 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/25 15:18:09 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:14:19 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 void	error(t_machine *machine, char *error_msg)
 {

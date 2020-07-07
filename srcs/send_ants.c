@@ -6,11 +6,11 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 17:11:48 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/05 21:27:00 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:15:19 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 static t_list	*get_shortest_path(t_list *path_lst)
 {
@@ -55,7 +55,8 @@ static void	new_ants(t_machine *machine, t_list **ant_lst, size_t *i)
 			((t_path*)(path_lst->content))->capacity--;
 			(*i)++;
 		}
-		path_lst = path_lst->next;
+		if (((t_path*)(shortest_path->content))->len != 2)
+			path_lst = path_lst->next;
 	}
 	ft_merge_sort(ant_lst, sort_ants);
 }

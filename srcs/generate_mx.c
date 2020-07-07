@@ -6,11 +6,11 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 15:22:55 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/25 15:04:12 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:14:24 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 void		fill_mx_data(t_room ***mx, t_list *room_lst)
 {

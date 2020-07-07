@@ -6,11 +6,11 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 18:58:22 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/16 20:48:00 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:14:30 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 void	get_ants_nb(t_machine *machine)
 {

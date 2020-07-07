@@ -6,11 +6,11 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 18:57:59 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/05 21:25:47 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:15:10 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 int		main(void)
 {

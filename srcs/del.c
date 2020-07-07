@@ -6,11 +6,11 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 20:20:44 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/25 18:21:02 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:14:13 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 void	del_nomalloc_lst(void *content, size_t content_size)
 {

@@ -6,11 +6,11 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 17:03:35 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/25 14:51:42 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:17:09 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lemin.h"
 
 void	debug_mx(t_machine *machine, t_room ***mx)
 {

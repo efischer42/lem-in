@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in_enum.h                                      :+:      :+:    :+:   */
+/*   lemin_enum.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/01 18:59:22 by efischer          #+#    #+#             */
-/*   Updated: 2020/06/16 19:30:26 by efischer         ###   ########.fr       */
+/*   Created: 2020/07/07 10:12:33 by efischer          #+#    #+#             */
+/*   Updated: 2020/07/07 10:12:42 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_ENUM_H
-# define LEM_IN_ENUM_H
+#ifndef LEMIN_ENUM_H
+# define LEMIN_ENUM_H
 
 enum	e_state
 {

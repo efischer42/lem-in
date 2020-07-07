@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:13:09 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/07 10:14:45 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:31:29 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	link_rooms(t_machine *machine, t_token *token)
 	}
 }
 
-void	get_pipes(t_machine *machine)
+void		get_pipes(t_machine *machine)
 {
 	t_list	*token_lst;
 

@@ -14,12 +14,14 @@ HEAD += lemin_struct.h
 
 PATHSRCS = srcs/
 SRCS += del.c
+SRCS += del2.c
 SRCS += error.c
 SRCS += generate_mx.c
 SRCS += get_a_path.c
 SRCS += get_ants_nb.c
 SRCS += get_rooms.c
 SRCS += get_paths.c
+SRCS += get_paths_set.c
 SRCS += get_pipes.c
 SRCS += get_word.c
 SRCS += lexer.c
@@ -28,6 +30,7 @@ SRCS += main.c
 SRCS += parser.c
 SRCS += send_ants.c
 SRCS += set_capacity.c
+SRCS += set_link.c
 SRCS += solve.c
 SRCS += utils.c
 

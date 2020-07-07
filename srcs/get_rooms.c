@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:11:57 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/07 10:14:50 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:35:37 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ static void	room_data(t_machine *machine, t_room *new_room, t_token *token)
 		if (new_room->y + 1 > machine->map_height)
 			machine->map_height = new_room->y + 1;
 	}
-	
 }
 
-static int	check_hyphen_token(t_machine *machine, t_room *new_room, t_token *token)
+static int	check_hyphen_token(t_machine *machine, t_room *new_room,
+				t_token *token)
 {
 	if (token->type == HYPHEN)
 	{
@@ -67,7 +67,8 @@ static int	check_hyphen_token(t_machine *machine, t_room *new_room, t_token *tok
 	return (FALSE);
 }
 
-static void	add_new_room(t_machine *machine, t_room *new_room, int *start, int *end)
+static void	add_new_room(t_machine *machine, t_room *new_room, int *start,
+				int *end)
 {
 	t_list		*lst_new;
 

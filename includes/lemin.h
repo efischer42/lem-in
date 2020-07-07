@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 10:12:47 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/07 10:13:03 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 11:58:42 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,16 @@ int		get_a_path(t_machine *machine, t_list **bfs, t_path *path);
 void	get_ants_nb(t_machine *machine);
 void	get_rooms(t_machine *machine);
 void	get_paths(t_machine *machine);
+int		get_paths_set(t_machine *machine, t_list **lst);
 void	get_pipes(t_machine *machine);
+t_list	*get_shortest_path(t_list *path_lst);
 void	get_word(t_machine *machine, t_token *token, size_t *pos);
 void	lexer_parser(t_machine *machine);
 void	lexer(t_machine *machine);
 void	parser(t_machine *machine);
 void	send_ants(t_machine *machine);
 void	set_capacity(t_machine *machine, t_list *paths);
+void	set_link(t_machine *machine, t_path *path, t_room *cur_room);
 void	solve(t_machine *machine);
 void	sort_ants(t_list **lst1, t_list **lst2, t_list **head);
 

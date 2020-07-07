@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 18:58:22 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/07 10:14:30 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/07 10:33:07 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	get_ants_nb(t_machine *machine)
 {
 	t_list	*token_lst;
+	int		nb_ants;
 
 	lexer_parser(machine);
 	token_lst = machine->token_lst;
@@ -22,8 +23,9 @@ void	get_ants_nb(t_machine *machine)
 	{
 		if (((t_token*)(token_lst->content))->type == NB)
 		{
+			nb_ants = ft_atoi(((t_token*)(token_lst->content))->value);
 			if (machine->ants == 0)
-				machine->ants = ft_atoi(((t_token*)(token_lst->content))->value);
+				machine->ants = nb_ants;
 			else
 				error(machine, "Ants number redefined");
 		}

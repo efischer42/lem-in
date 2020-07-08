@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 17:11:48 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/07 13:04:50 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/08 23:22:10 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void			send_ants(t_machine *machine)
 	i = 1;
 	print = NULL;
 	ant_lst = NULL;
-	//ft_putendl("");
+	ft_putendl("");
 	while (i <= machine->ants)
 	{
 		new_ants(machine, &ant_lst, &i);

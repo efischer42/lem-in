@@ -6,7 +6,7 @@
 /*   By: efischer <efischer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 19:11:57 by efischer          #+#    #+#             */
-/*   Updated: 2020/07/07 10:35:37 by efischer         ###   ########.fr       */
+/*   Updated: 2020/07/08 23:26:27 by efischer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,17 @@ static void	add_new_room(t_machine *machine, t_room *new_room, int *start,
 		error(machine, "Cannot allocate memory");
 	ft_lstaddend(&machine->room_lst, lst_new);
 	if (*start == TRUE)
+	{
+		if (machine->start != NULL)
+			error(machine, "Start redefined");
 		machine->start = lst_new->content;
+	}
 	else if (*end == TRUE)
+	{
+		if (machine->end != NULL)
+			error(machine, "End redefined");
 		machine->end = lst_new->content;
+	}
 	*start = FALSE;
 	*end = FALSE;
 }
